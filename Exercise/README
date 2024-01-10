@@ -1,0 +1,16 @@
+In this exercise we give you data from the measurement of 10 amplifiers, which is stored in the .csv files in the folder Data. 
+These have been measured with a commercial vector network analyzer.
+
+The task is for you to make figures that show us how similar (or how different) the 10 amplifiers are. 
+There is no correct solution, the concept is very similar to the exploratory work of a PhD candidate. 
+We would like to understand how you tackle problems, in particular those that rely on programming. 
+The most important quantity is the 5th column, the unitless amplification magnitude, labelled S21(MAG), as function of frequency in Hz, labelled Freq(Hz). There are several other parameters stored, the so called "S-Parameters" (https://en.wikipedia.org/wiki/Scattering_parameters). You can use these as well in your submission, but these are not required. 
+
+You can read in the data in your preferred software and make figures that you prefer, based on your prior education.
+
+If you do not have extensive prior programming experience, you can start from the jupyter notebook. 
+If you have not previously worked with jupyter notebooks, please follow the instructions here. https://jupyter.org/
+
+You can prepare the results in whatever way you think is useful for a small scientific meeting, e.g. a 3 slides (or less) presentation. Please keep it to less than 3 minutes. 
+We would appreciate, if you made your code available to us as well, for instance via https://github.com/
+Please prepare this exercise before you come to the interview. We may (or may not) ask about this during the interview, but we will certainly look at materials. 
