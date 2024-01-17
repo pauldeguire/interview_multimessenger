@@ -2,12 +2,18 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
+def find_nearest(array, value):
+    array = np.asarray(array)
+    idx = (np.abs(array - value)).argmin()
+    return idx
+
+
 def find_closer(array,braket):
     """
     Input: An array as well as a list [val_down,val_up] for the interval
     Output: A list [down,up] with index values from the initial array
     """
-    idx_min,idx_max = (np.abs(array - braket[0])).argmin(),(np.abs(array - braket[1])).argmin()
+    idx_min,idx_max = find_nearest(array,braket[0]),find_nearest(array,braket[1])
     return [idx_min,idx_max+1]
 
 
@@ -41,6 +47,12 @@ def plot_zoom(xvals,to_plot,place='down',name_fig='test',xlab='Frequency (Hz)',y
     fig.tight_layout()
     plt.savefig('Exercise/Figures/'+name_fig+'.png')
     plt.show()
+
+
+def bandwidth(x,y,fraction):
+    maximum,idx_max = np.max(y),np.argmax(y)
+    down,up = find_nearest(y[:idx_max],fraction*maximum),find_nearest(y[idx_max:],fraction*maximum)
+    return np.array([x[down],x[up+idx_max-1]])
 
 
 if __name__=='__main__':

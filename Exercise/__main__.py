@@ -14,6 +14,7 @@ path = 'Exercise/Data/'
 list_files = os.listdir(path)
 ys = []
 toplot1 = []
+bandwidth = []
 
 all_data = {} # The key will be the name of the file, the element will be the data
 
@@ -23,10 +24,11 @@ for file in list_files:
     x,y = all_data[name]['Freq(Hz)'],all_data[name]['S21(MAG)']
     toplot1.append(((x,y,name),'plot'))
     ys.append(y)
+    bandwidth.append(fun.bandwidth(x,y,0.5))
     
 fun.plot_zoom([1.5e8,4.5e8],toplot1,name_fig='all_amp')
 
-
+bandwidth = np.asarray(bandwidth)
 
 ##
 ## We see the amplifiers seem to obey the same pattern, but some have higher gains than others.
@@ -42,4 +44,9 @@ fun.plot_zoom([1.5e8,4.5e8],toplot2,name_fig='uncert')
 
 toplot3 = [((x,std/mean,'$\\sigma/\\mu$'),'plot')]
 fun.plot_zoom([1e8,6e8],toplot3,name_fig='cv',place='up',ylab='Coefficient of variation')
+
+mean_down,mean_up = bandwidth.mean(0)
+std_down,std_up = bandwidth.std(0)
+print("Down frequency = %.2e +- %.2e"%(mean_down,std_down))
+print("Up frequency = %.2e +- %.2e"%(mean_up,std_up))
 
